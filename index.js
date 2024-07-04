@@ -98,7 +98,7 @@ app.post("/buyer/login",async(req,res)=>{
         }
         if(user.PIN!=null && user.PIN===PIN){
 
-            const { token, hash } = generateToken(username, oin);
+            const { token, hash } = generateToken(Name, oin);
             res.status(200).json({message:"Login Successful",token:token,hash:hash})
         }
     }
