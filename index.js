@@ -189,7 +189,7 @@ app.get("/market-view",async(req,res)=>{
 
 app.post("/market-search",async(req,res)=>{
     try{
-        const item = req.body
+        const {item} = req.body
         if(!item){
             return res.status(400).json({ message: 'Key and value are required' });
         }
@@ -204,7 +204,7 @@ app.post("/market-search",async(req,res)=>{
                     cond: {
                       $and: [
                         { $eq: ['$$sell.isTransactionComplete', false] },
-                        { $eq: [`$$sell.OrderItem`, item] },
+                        { $eq: [`$$sell.SellItem`, item] },
                       ],
                     },
                   },
