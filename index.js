@@ -162,6 +162,21 @@ app.post("/sellerSale",async(req,res)=>{
     }
 })
 
+app.get("/sellerSaleList",async(req,res)=>{
+    const username = req.query.username
+    try{
+        const seller = await Seller.findOne({Name:username})
+        if(seller){
+            res.status(200).json({seller:seller.MySellList})
+        }
+        else{
+            res.status(403).json({seller:null})
+        }
+    }catch(err){
+
+    }
+})
+
 app.get("/market-view",async(req,res)=>{
     try{
         const sellers = await Seller.aggregate([
@@ -213,6 +228,7 @@ app.post("/market-search",async(req,res)=>{
             },
           ]);
           res.status(200).json(sellers)
+          
     }catch(err){
         console.log(err)
         res.status(500).json({message:"Couldnt place Search"})
