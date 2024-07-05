@@ -96,9 +96,9 @@ app.post("/buyer/login",async(req,res)=>{
         if(!user){
             res.status(500).json({message:"No user Found"})
         }
-        if(user.PIN!=null && user.PIN===PIN){
+        if(user.PIN!=null && user.PIN==PIN){
 
-            const { token, hash } = generateToken(Name, oin);
+            const { token, hash } = generateToken(Name, PIN);
             res.status(200).json({message:"Login Successful",token:token,hash:hash})
         }
     }
